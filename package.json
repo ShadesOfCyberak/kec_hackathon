@@ -1,0 +1,8 @@
+{
+    "name": "energy-trading-client",
+    "version": "1.0.0",
+    "dependencies": {
+        "fabric-network": "^2.2.19",
+        "fabric-ca-client": "^2.2.19"
+    }
+}
