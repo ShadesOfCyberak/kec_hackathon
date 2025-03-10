@@ -1,34 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head><title>Transaction History</title></head>
-<body>
+{% extends "base.html" %}
+{% block content %}
     <h2>Transaction History - {{ username }}</h2>
-    <table border="1">
-        <tr>
-            <th>Type</th>
-            <th>Details</th>
-            <th>Timestamp</th>
-        </tr>
+    <ul>
         {% for entry in history %}
-        <tr>
-            <td>{{ entry.data.type }}</td>
-            <td>
-                {% if entry.data.type == "production" %}
-                    Energy: {{ entry.data.energy }} kWh
-                {% elif entry.data.type == "deposit" %}
-                    Amount: ₹{{ entry.data.amount }}
-                {% elif entry.data.type == "transfer" %}
-                    {% if entry.data.sender == username %}
-                        Sent {{ entry.data.tokens }} tokens to {{ entry.data.recipient }} at ₹{{ entry.data.price }}/token
-                    {% else %}
-                        Received {{ entry.data.tokens }} tokens from {{ entry.data.sender }} at ₹{{ entry.data.price }}/token
-                    {% endif %}
-                {% endif %}
-            </td>
-            <td>{{ entry.timestamp }}</td>
-        </tr>
+            <li>{{ entry|tojson }}</li>
         {% endfor %}
-    </table>
-    <a href="/dashboard">Back to Dashboard</a>
-</body>
-</html>
+    </ul>
+{% endblock %}

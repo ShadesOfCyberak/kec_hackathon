@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head><title>Login</title></head>
-<body>
-    <h1>Login</h1>
+<!-- {% extends "base.html" %}
+{% block content %} -->
+    <h2>Login/Register</h2>
     <form method="POST">
-        Username: <input type="text" name="username"><br>
-        Password: <input type="password" name="password"><br>
-        <input type="submit" value="Login">
-        <br><br>
-        <a href='/'>Go to Home Page</a>
-        <br>
-        <a href='/register'>Register Here</a>
+        Username: <input type="text" name="username" required><br>
+        Role: <select name="role">
+            <option value="producer">Producer</option>
+            <option value="buyer">Buyer</option>
+        </select><br>
+        <input type="submit" value="Login/Register">
     </form>
-</body>
-</html>
+<!-- {% endblock %} -->

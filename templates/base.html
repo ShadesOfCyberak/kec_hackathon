@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Energy Trading DApp</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Energy Trading DApp</h1>
+    {% if session.username %}
+        <p>Welcome, {{ session.username }} ({{ session.role }}) | <a href="{{ url_for('logout') }}">Logout</a></p>
+    {% endif %}
+    {% block content %}{% endblock %}
+</body>
+</html>
