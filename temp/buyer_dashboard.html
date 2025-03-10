@@ -1,0 +1,91 @@
+<link rel="stylesheet" href="buyer_dashboard.css">
+
+<header>
+    <h1>🛍️ Buyer Dashboard</h1>
+    <a href="{{ url_for('logout') }}" class="logout">Logout</a>
+</header>
+
+<div class="dashboard-info">
+    <p><strong>💰 Tokens:</strong> {{ tokens }}</p>
+    <p><strong>🏦 Balance:</strong> ₹{{ balance }}</p>
+    <p><strong>📊 Market Price:</strong> ₹{{ market_price }}</p>
+</div>
+
+<section class="actions" style="display: flex; gap: 20px; justify-content: center;">
+    <div class="card">
+        <h3>💳 Buy Tokens</h3>
+        <form method="POST" style="display: flex; flex-direction: column; gap: 10px; align-items: flex-start;">
+            <label for="tokens">Tokens to Buy:</label>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <input type="number" id="tokens" name="tokens" min="0.1" step="0.1" required>
+                <button type="submit">Buy Tokens</button>
+            </div>
+        </form>
+    </div>
+    
+    <div class="card">
+        <h3>🏦 Deposit Funds</h3>
+        <form method="POST" style="display: flex; flex-direction: column; gap: 10px; align-items: flex-start;">
+            <label for="deposit_amount">Amount to Deposit (₹):</label>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <input type="number" id="deposit_amount" name="deposit_amount" min="0.1" step="0.1" required>
+                <button type="submit">Deposit Funds</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<a href="{{ url_for('history') }}" class="history-link">📜 View Transaction History</a>
+
+<h3>📉 Market Price History</h3>
+<canvas id="priceChart" width="400" height="200"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('priceChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['10 AM', '11 AM', '12 PM', '1 PM', '2 PM'],
+            datasets: [{
+                label: 'Market Price (₹)',
+                data: [9, 10, 11, 12, 10.5],
+                borderColor: '#ff6b6b',
+                backgroundColor: 'rgba(255, 107, 107, 0.2)',
+                fill: true,
+                tension: 0.4
+            }]
+        },
+        options: { responsive: true ,
+            plugins: {
+            legend: {
+                labels: {
+                    color: '#d9eb34',  // Change legend text color
+                    font: {
+                        size: 16,  // Change legend font size
+                        weight: 'bold'
+                    }
+                }
+            }
+        },
+            scales: {
+            x: {
+                ticks: {
+                    color: '#d9eb34',
+                    font:{
+                        size:16
+                    } 
+                }
+            },
+            y: {
+                ticks: {
+                    color: '#d9eb34', 
+                    font:{
+                        size:16
+                    } 
+                }
+            }
+        }
+        
+        }
+    });
+</script>
