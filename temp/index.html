@@ -1,8 +1,91 @@
 <!DOCTYPE html>
-<html>
-<head><title>Energy Trading Platform</title></head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Trading Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            text-align: center;
+            flex-direction: column;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+            animation: fadeIn 1.2s ease-in-out;
+        }
+        p {
+            font-size: 20px;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        .buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 12px 24px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .btn-register {
+            background: linear-gradient(135deg, #4CAF50, #2E8B57);
+        }
+        .btn-register:hover {
+            background: linear-gradient(135deg, #2E8B57, #4CAF50);
+            transform: scale(1.1);
+        }
+        .btn-login {
+            background: linear-gradient(135deg, #ff758c, #ff3b6f);
+        }
+        .btn-login:hover {
+            background: linear-gradient(135deg, #ff3b6f, #ff758c);
+            transform: scale(1.1);
+        }
+    .brand {
+            font-size: 50px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            /*text-transform: uppercase;*/
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+    </style>
+</head>
 <body>
-    <h1>Welcome to P2P Energy Trading</h1>
-    <a href="{{ url_for('register') }}">Register</a> | <a href="{{ url_for('login') }}">Login</a>
+    <h2 class="brand">From Horizon</h2>
+    <h1>⚡ Welcome to P2P Energy Trading</h1>
+    <p>Trade energy efficiently and securely with blockchain technology.</p>
+    <div class="buttons">
+        <a href="{{ url_for('register') }}" class="btn btn-register">Register</a>
+        <a href="{{ url_for('login') }}" class="btn btn-login">Login</a>
+    </div>
 </body>
 </html>
