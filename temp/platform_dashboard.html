@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='platform_dashboard.css') }}">
+</head>
+<body>
+    <header>
+        <h1>🏦 Platform Dashboard</h1>
+        <a href="{{ url_for('logout') }}" class="logout">Logout</a>
+    </header>
+
+    <div class="dashboard-info">
+        <p><strong>🏦 Total Fees Collected:</strong> ₹{{ balance }}</p>
+    </div>
+
+    <h3>📜 Fee Transaction History</h3>
+    <table class="transaction-table">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>User(s)</th>
+                <th>Tokens/Energy</th>
+                <th>Basic Cost</th>
+                <th>Platform Fee(s)</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction.data.type }}</td>
+                    <td>
+                        {% if transaction.data.type == 'production' %}
+                            {{ transaction.data.username }}
+                        {% elif transaction.data.type == 'transfer' %}
+                            {{ transaction.data.sender }} → {{ transaction.data.recipient }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if transaction.data.type == 'production' %}
+                            {{ transaction.data.energy }} kWh
+                        {% elif transaction.data.type == 'transfer' %}
+                            {{ transaction.data.tokens }} tokens
+                        {% endif %}
+                    </td>
+                    <td>₹{{ transaction.data.basic_cost|default(0)|round(2) }}</td>
+                    <td>
+                        {% if transaction.data.type == 'production' %}
+                            ₹{{ transaction.data.platform_fee|default(0)|round(2) }}
+                        {% elif transaction.data.type == 'transfer' %}
+                            Buyer: ₹{{ transaction.data.buyer_platform_fee|default(0)|round(2) }}<br>
+                            Producer: ₹{{ transaction.data.producer_platform_fee|default(0)|round(2) }}
+                        {% endif %}
+                    </td>
+                    <td>{{ transaction.timestamp }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
