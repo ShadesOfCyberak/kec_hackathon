@@ -46,16 +46,16 @@
                             {{ transaction.data.tokens }} tokens
                         {% endif %}
                     </td>
-                    <td>₹{{ transaction.data.basic_cost|default(0)|round(2) }}</td>
+                    <td>₹{{ transaction.data.get('basic_cost', 0)|default(0)|round(2) }}</td>
                     <td>
                         {% if transaction.data.type == 'production' %}
-                            ₹{{ transaction.data.platform_fee|default(0)|round(2) }}
+                            ₹{{ transaction.data.get('platform_fee', 0)|default(0)|round(2) }}
                         {% elif transaction.data.type == 'transfer' %}
-                            Buyer: ₹{{ transaction.data.buyer_platform_fee|default(0)|round(2) }}<br>
-                            Producer: ₹{{ transaction.data.producer_platform_fee|default(0)|round(2) }}
+                            Buyer: ₹{{ transaction.data.get('buyer_platform_fee', 0)|default(0)|round(2) }}<br>
+                            Producer: ₹{{ transaction.data.get('producer_platform_fee', 0)|default(0)|round(2) }}
                         {% endif %}
                     </td>
-                    <td>{{ transaction.timestamp }}</td>
+                    <td>{{ transaction.timestamp|datetime }}</td>
                 </tr>
             {% endfor %}
         </tbody>
