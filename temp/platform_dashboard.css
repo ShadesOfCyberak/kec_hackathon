@@ -18,7 +18,7 @@ body {
 
 /* Header Styling */
 header {
-    background: linear-gradient(135deg, #9375ff, #ff7eb3);
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
     color: white;
     width: 100%;
     text-align: center;
@@ -58,6 +58,19 @@ header {
     margin: 20px 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     text-align: center;
+}
+
+/* Search Box */
+.search-box {
+    margin-bottom: 15px;
+}
+
+.search-box input {
+    padding: 10px;
+    width: 300px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
 }
 
 /* Table Styling */

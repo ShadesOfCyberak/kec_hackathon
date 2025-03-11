@@ -16,8 +16,13 @@
         <p><strong>🏦 Total Fees Collected:</strong> ₹{{ balance }}</p>
     </div>
 
+   
+
     <h3>📜 Fee Transaction History</h3>
-    <table>
+    <div class="search-box">
+        <input type="text" id="search" onkeyup="searchTransactions()" placeholder="Search transactions...">
+    </div>
+    <table id="transactionTable">
         <thead>
             <tr>
                 <th>Type</th>
@@ -60,5 +65,16 @@
             {% endfor %}
         </tbody>
     </table>
+
+    <script>
+        function searchTransactions() {
+            let input = document.getElementById("search").value.toLowerCase();
+            let rows = document.querySelectorAll("#transactionTable tbody tr");
+            rows.forEach(row => {
+                let text = row.textContent.toLowerCase();
+                row.style.display = text.includes(input) ? "" : "none";
+            });
+        }
+    </script>
 </body>
 </html>
